@@ -15,8 +15,6 @@ class Control
 
     public function __construct()
     {
-        $this->recaptcha_logged_in = 0;
-
         $this->recaptcha_verify_url             = 'https://www.google.com/recaptcha/api/siteverify';
         $this->recaptcha_scripts                = 'https://www.google.com/recaptcha/api.js';
         $this->enable                           = esc_attr(get_option('f13_recaptcha_enable'));
@@ -27,7 +25,7 @@ class Control
         $this->label_recaptcha_failed           = __('This form is for humans only!', 'f13-recaptcha');
         $this->label_recaptcha_please_complete  = __('Please complete the reCaptcha checkbox.', 'f13-recaptcha');
 
-        add_action('comment_form_defaults',     array( $this, 'fields'));
+        add_action('comment_form_defaults',     array($this, 'fields'));
         add_filter('preprocess_comment',        array($this, 'validate'));
 
         add_filter('f13_recaptcha_add',         array($this, 'recaptcha_add'), 10, 0);
@@ -45,7 +43,8 @@ class Control
         return false;
     }
 
-    public function fields($default) {
+    public function fields($default)
+    {
         if (!$this->_show_captcha()) {
             return $default;
         }
@@ -60,7 +59,7 @@ class Control
         if (!$this->_show_captcha()) {
             return $v;
         }
-        $v = '<p>';
+        $v .= '<p>';
             $v .= '<script src="'.$this->recaptcha_scripts.'" async defer></script>';
             $v .= '<div class="g-recaptcha" data-sitekey="'.$this->public_key.'"></div>';
         $v .= '</p>';
