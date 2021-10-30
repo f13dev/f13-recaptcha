@@ -3,7 +3,7 @@
 Plugin Name: F13 reCaptcha
 Plugin URI: https://f13.dev/wordpress-plugins/wordpress-plugin-recaptcha/
 Description: Add reCaptcha to your wordpress site
-Version: 0.0.1
+Version: 1.0.0
 Author: Jim Valentine
 Author URI: https://f13.dev
 Text Domain: f13-recaptcha
